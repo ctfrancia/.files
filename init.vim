@@ -25,6 +25,7 @@
     "Typescript Plugins
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
     Plug 'Quramy/tsuquyomi'
+		Plug 'mhartington/nvim-typescript', {'do': ':!install.sh \| UpdateRemotePlugins'}
     Plug 'mhartington/deoplete-typescript'
 
     call plug#end()
@@ -55,10 +56,14 @@
     let g:tsuquyomi_javascript_support = 1
     let g:tsuquyomi_auto_open = 1
     let g:tsuquyomi_disable_quickfix = 1
+		let NERDTreeShowHidden=1
 
     set tabstop=2       " number of visual spaces per TAB
     set softtabstop=2   " number of spaces in tab when editing
     set shiftwidth=2    " number of spaces to use for autoindente
+		set expandtab       " set tabs to spaces
+		set nu							" number on the side
+
     autocmd! BufWritePost * Neomake
     let g:neomake_warning_sign = {
       \ 'text': '?',
@@ -69,4 +74,13 @@
       \ 'text': 'X',
       \ 'texthl': 'ErrorMsg',
       \ }
-		map <C-n> :NERDTreeToggle <CR>
+
+		let mapleader=";"
+		" map <C-n> :NERDTreeToggle <CR>
+		inoremap ;; <Esc>
+
+    " maps to ; <spacebar>
+		nnoremap <leader> <Space> :NERDTreeToggle<CR>
+
+
+		nnoremap <leader> <Space> :NERDTreeFind<CR>
