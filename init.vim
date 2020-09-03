@@ -80,7 +80,11 @@
 		inoremap ;; <Esc>
 
     " maps to ; <spacebar>
-		nnoremap <leader> <Space> :NERDTreeToggle<CR>
+		nnoremap <leader><Space> :NERDTreeToggle<CR>
 
 
-		nnoremap <leader> <Space> :NERDTreeFind<CR>
+		" toggle line numbers
+    nnoremap <silent> <leader>n :set number! number?<CR>
+
+    " update files in nerdtree
+    nnoremap <silent> <leader>t :NERDTreeFind <CR>
