@@ -15,6 +15,7 @@
     Plug 'ludovicchabant/vim-gutentags'
 		Plug 'w0rp/ale'
 		Plug 'preservim/nerdtree'
+    Plug 'ctrlpvim/ctrlp.vim'
 
 
     "Javascript Plugins
@@ -58,11 +59,17 @@
     let g:tsuquyomi_disable_quickfix = 1
 		let NERDTreeShowHidden=1
 
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard'] "Hide files in .gitignore
+    let g:ctrlp_show_hidden = 1                                                         "Show dotfiles
+
+    " let g:ackprg = 'ag --vimgrep' " for replacing vimgrep with the silver seacher(ag)
+
     set tabstop=2       " number of visual spaces per TAB
     set softtabstop=2   " number of spaces in tab when editing
     set shiftwidth=2    " number of spaces to use for autoindente
 		set expandtab       " set tabs to spaces
 		set nu							" number on the side
+    set relativenumber  " sets the number relative to where curser is
 
     autocmd! BufWritePost * Neomake
     let g:neomake_warning_sign = {
@@ -77,7 +84,13 @@
 
 		let mapleader=";"
 		" map <C-n> :NERDTreeToggle <CR>
-		inoremap ;; <Esc>
+		inoremap kj <Esc>
+
+    " disables <esc> so kj has to be used to enter normal mode
+    inoremap <esc> <nop>
+
+    " maps to ; dd
+    nnoremap <leader>d dd
 
     " maps to ; <spacebar>
 		nnoremap <leader><Space> :NERDTreeToggle<CR>
@@ -86,5 +99,36 @@
 		" toggle line numbers
     nnoremap <silent> <leader>n :set number! number?<CR>
 
-    " update files in nerdtree
-    nnoremap <silent> <leader>t :NERDTreeFind <CR>
+    nnoremap <silent> <leader>r :set relativenumber! relativenumber?<CR>
+
+    " deletes line while in insert mode
+    inoremap <c-d> <esc>ddi 
+
+    " highlights word and makes it uppercase
+    vnoremap <c-u> <esc>veU
+
+    " allows for fast editing of neovim file
+    nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+    " allows to source neovim
+    nnoremap <leader>sv :source $MYVIMRC<cr>
+    
+    " wrap a word with single quotes ;'
+    nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+
+    " maps split navigation
+    nnoremap <C-J> <C-W><C-J>
+    nnoremap <C-K> <C-W><C-K>
+    nnoremap <C-L> <C-W><C-L>
+    nnoremap <C-H> <C-W><C-H>
+
+    " toggles highlight search
+    nnoremap <F3> :set hlsearch!<CR>
+
+    " autocmd FileType javascript :iabbrev <buffer> iff if()<left>kjx
+    augroup filetype_html
+    autocmd!
+    autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+  augroup END
+
+    echo "(>^.^<)" 
