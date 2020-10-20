@@ -16,6 +16,7 @@
 		Plug 'w0rp/ale'
 		Plug 'preservim/nerdtree'
     Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'ayu-theme/ayu-vim'
 
 
     "Javascript Plugins
@@ -35,6 +36,13 @@
 			\ 'javascript': ['eslint']
 			\ }
  
+    " ayu color scheme
+    set termguicolors     " enable true colors support
+    " let ayucolor="light"  " for light version of theme
+    let ayucolor="mirage" " for mirage version of theme
+    " let ayucolor="dark"   " for dark version of theme
+    colorscheme ayu
+
 		let g:ale_sign_error = '❌'
 		let g:ale_sign_warning = '⚠️'
 		let g:ale_fix_on_save = 1
@@ -64,12 +72,12 @@
 
     " let g:ackprg = 'ag --vimgrep' " for replacing vimgrep with the silver seacher(ag)
 
-    set tabstop=2       " number of visual spaces per TAB
-    set softtabstop=2   " number of spaces in tab when editing
-    set shiftwidth=2    " number of spaces to use for autoindente
-		set expandtab       " set tabs to spaces
-		set nu							" number on the side
-    set relativenumber  " sets the number relative to where curser is
+    set tabstop=2         " number of visual spaces per TAB
+    set softtabstop=2     " number of spaces in tab when editing
+    set shiftwidth=2      " number of spaces to use for autoindente
+		set expandtab         " set tabs to spaces
+		set nu                " number on the side
+    set norelativenumber  " sets the number relative to where curser is
 
     autocmd! BufWritePost * Neomake
     let g:neomake_warning_sign = {
@@ -95,6 +103,8 @@
     " maps to ; <spacebar>
 		nnoremap <leader><Space> :NERDTreeToggle<CR>
 
+    " :NERDTreeFind
+    nnoremap <leader>f :NERDTreeFind<CR>
 
 		" toggle line numbers
     nnoremap <silent> <leader>n :set number! number?<CR>
@@ -122,13 +132,18 @@
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
 
+    " toggle split
+    nnoremap <leader>s <C-W>H <leader><space><leader><space> <cr>
+
+
     " toggles highlight search
     nnoremap <F3> :set hlsearch!<CR>
 
     " autocmd FileType javascript :iabbrev <buffer> iff if()<left>kjx
-    augroup filetype_html
+  augroup filetype_html
     autocmd!
     autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+    autocmd FocusGained,BufEnter * :checktime
   augroup END
 
     echo "(>^.^<)" 
