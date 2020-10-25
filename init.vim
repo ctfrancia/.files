@@ -17,6 +17,9 @@
 		Plug 'preservim/nerdtree'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'ayu-theme/ayu-vim'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 	
 	"vim-go
 	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -34,6 +37,9 @@
     Plug 'mhartington/deoplete-typescript'
 
     call plug#end()
+
+    syntax on
+
 		"eslint config
 		let g:ale_fixers = {
 			\ 'javascript': ['eslint']
@@ -96,6 +102,9 @@
 		let mapleader=";"
 		" map <C-n> :NERDTreeToggle <CR>
 		inoremap kj <Esc>
+
+    " maps to :Files
+    nnoremap <leader>fs :Files<CR>
 
     " disables <esc> so kj has to be used to enter normal mode
     inoremap <esc> <nop>
