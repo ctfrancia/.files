@@ -11,7 +11,8 @@
       UpdateRemotePlugins
     endfunction
     Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-    Plug 'neomake/neomake', { 'on': 'Neomake' }
+    " Plug 'neomake/neomake', { 'on': 'Neomake' }
+    Plug 'neomake/neomake' 
     Plug 'ludovicchabant/vim-gutentags'
 		Plug 'w0rp/ale'
 		Plug 'preservim/nerdtree'
@@ -20,23 +21,26 @@
     Plug 'sheerun/vim-polyglot'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 	
-	"vim-go
-	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    "vim-go
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 
     "Javascript Plugins
     Plug 'pangloss/vim-javascript'
-    Plug 'carlitux/deoplete-ternjs'
+    " Plug 'carlitux/deoplete-ternjs'
     Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
 
     "Typescript Plugins
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
     Plug 'Quramy/tsuquyomi'
-		Plug 'mhartington/nvim-typescript', {'do': ':!install.sh \| UpdateRemotePlugins'}
-    Plug 'mhartington/deoplete-typescript'
+		" Plug 'mhartington/nvim-typescript', {'do': ':!install.sh \| UpdateRemotePlugins'}
+    " Plug 'mhartington/deoplete-typescript'
 
     call plug#end()
+    let g:airline_theme='ayu_mirage' 
 
     syntax on
 
@@ -137,6 +141,11 @@
     
     " wrap a word with single quotes ;'
     nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+
+    " copies to system clipboard
+    vnoremap <leader>y "*y
+
+
 
     " maps split navigation
     nnoremap <C-J> <C-W><C-J>

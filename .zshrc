@@ -10,6 +10,11 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/christian.francia/.oh-my-zsh"
+export GOPATH=$HOME/Documents/goworkspace
+
+# export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=${PATH}:$GOBIN
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -75,7 +80,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git docker node)
 
 source $ZSH/oh-my-zsh.sh
 
