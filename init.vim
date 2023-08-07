@@ -12,7 +12,8 @@
     endfunction
     Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
     " Plug 'neomake/neomake', { 'on': 'Neomake' }
-    Plug 'neomake/neomake' 
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neomake/neomake'
     Plug 'ludovicchabant/vim-gutentags'
 		Plug 'w0rp/ale'
 		Plug 'preservim/nerdtree'
@@ -23,7 +24,8 @@
     Plug 'junegunn/fzf.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-	
+    Plug 'github/copilot.vim'
+
     "vim-go
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
@@ -40,20 +42,21 @@
     " Plug 'mhartington/deoplete-typescript'
 
     call plug#end()
-    let g:airline_theme='ayu_mirage' 
+    let g:airline_theme='ayu_mirage'
 
     syntax on
 
 		"eslint config
 		let g:ale_fixers = {
-			\ 'javascript': ['eslint']
+			\ 'javascript': ['eslint'],
+			\ 'typescript': ['eslint']
 			\ }
- 
+
     " ayu color scheme
     set termguicolors     " enable true colors support
     " let ayucolor="light"  " for light version of theme
-    let ayucolor="mirage" " for mirage version of theme
-    " let ayucolor="dark"   " for dark version of theme
+    " let ayucolor="mirage" " for mirage version of theme
+    let ayucolor="dark"   " for dark version of theme
     colorscheme ayu
 
 		let g:ale_sign_error = '❌'
@@ -69,7 +72,7 @@
 
 		call deoplete#custom#option(g:,'deoplete#omni#input_patterns',{})
     call deoplete#custom#option('_', 'matchers', ['matcher_full_fuzzy'])
-		
+
     let g:tern_request_timeout = 1
     let g:tern_request_timeout = 6000
     let g:tern#command = ["tern"]
@@ -91,6 +94,9 @@
 		set expandtab         " set tabs to spaces
 		set nu                " number on the side
     set norelativenumber  " sets the number relative to where curser is
+
+    " Give more space for displaying messages. CoC
+    set cmdheight=2
 
     autocmd! BufWritePost * Neomake
     let g:neomake_warning_sign = {
@@ -128,7 +134,7 @@
     nnoremap <silent> <leader>r :set relativenumber! relativenumber?<CR>
 
     " deletes line while in insert mode
-    inoremap <c-d> <esc>ddi 
+    inoremap <c-d> <esc>ddi
 
     " highlights word and makes it uppercase
     vnoremap <c-u> <esc>veU
@@ -138,13 +144,15 @@
 
     " allows to source neovim
     nnoremap <leader>sv :source $MYVIMRC<cr>
-    
+
     " wrap a word with single quotes ;'
     nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 
     " copies to system clipboard
     vnoremap <leader>y "*y
 
+    " pastes from system clipboard
+    vnoremap <leader>p "*p
 
 
     " maps split navigation
@@ -186,4 +194,4 @@
   let g:go_highlight_types = 1
   let g:go_auto_sameids = 1
 
-  echo "(>^.^<)" 
+  " echo "(>^.^<)"
